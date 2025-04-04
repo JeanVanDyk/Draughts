@@ -1,7 +1,7 @@
-from checkers.constants import BLACK, WHITE, SQUARE_SIZE
-from checkers.Move import Move, Capture
-from engine.Bot import GreedyBot
-from checkers.Board import Board
+from App.checkers.constants import BLACK, WHITE, SQUARE_SIZE
+from App.checkers.Move import Move, Capture
+from App.engine.Bot import GreedyBot
+from App.checkers.Board import Board
 
 class Game:
     def __init__(self, board: Board):

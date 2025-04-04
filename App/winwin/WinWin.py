@@ -1,7 +1,7 @@
 import pygame
-from constants import DARK, LIGHT, WHITE
-from winwin.constants import POPUP_HEIGHT, POPUP_WIDTH, POPUP_X, POPUP_Y
-from winwin.constants import MENU_HEIGHT, MENU_WIDTH, MENU_X, MENU_Y
+from App.constants import DARK, LIGHT, WHITE
+from App.winwin.constants import POPUP_HEIGHT, POPUP_WIDTH, POPUP_X, POPUP_Y
+from App.winwin.constants import MENU_HEIGHT, MENU_WIDTH, MENU_X, MENU_Y
 
 class WinWin:
     def __init__(self, screen, color):

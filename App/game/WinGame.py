@@ -1,11 +1,11 @@
 import pygame
 import random
-from constants import WHITE, BLACK
-from checkers.Board import Board
-from checkers.Piece import Men
-from checkers.Move import Move
-from game.Game import Game, Game_PVP, Game_PVE
-from utils import get_row_col_from_mouse
+from App.constants import WHITE, BLACK
+from App.checkers.Board import Board
+from App.checkers.Piece import Men
+from App.checkers.Move import Move
+from App.game.Game import Game, Game_PVP, Game_PVE
+from App.utils import get_row_col_from_mouse
 
 class WinGame:
     def __init__(self, screen):

@@ -1,4 +1,4 @@
-from checkers.constants import SQUARE_SIZE
+from App.checkers.constants import SQUARE_SIZE
 
 def get_row_col_from_mouse(x, y):
     row = y // SQUARE_SIZE

@@ -1,5 +1,5 @@
 import pygame
-from constants import WIDTH
+from App.constants import WIDTH
 
 ROWS, COLS = 10, 10
 SQUARE_SIZE = WIDTH // COLS

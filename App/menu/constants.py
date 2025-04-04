@@ -1,7 +1,7 @@
 import pygame
 import random
 
-from constants import WIDTH, HEIGHT
+from App.constants import WIDTH, HEIGHT
 
 # PVP button
 START_PVP_LENGTH = WIDTH // 3

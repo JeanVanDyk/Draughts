@@ -1,9 +1,9 @@
 import random
-from checkers.constants import ROWS, COLS, WHITE, BLACK
-from checkers.Board import Board
-from checkers.Move import Move, Capture
-from checkers.Stone import Stone
-from checkers.Piece import Men, King
+from App.checkers.constants import ROWS, COLS, WHITE, BLACK
+from App.checkers.Board import Board
+from App.checkers.Move import Move, Capture
+from App.checkers.Stone import Stone
+from App.checkers.Piece import Men, King
 
 class Bot():
     def __init__(self):

@@ -1,8 +1,8 @@
 import pygame
-from constants import WIDTH, DARK, LIGHT
-from menu.constants import START_PVP_X, START_PVP_Y, START_PVP_HEIGHT, START_PVP_LENGTH
-from menu.constants import START_PVE_X, START_PVE_Y, START_PVE_HEIGHT, START_PVE_LENGTH
-from menu.constants import PICTURE
+from App.constants import WIDTH, DARK, LIGHT
+from App.menu.constants import START_PVP_X, START_PVP_Y, START_PVP_HEIGHT, START_PVP_LENGTH
+from App.menu.constants import START_PVE_X, START_PVE_Y, START_PVE_HEIGHT, START_PVE_LENGTH
+from App.menu.constants import PICTURE
 
 class WinMenu:
 

@@ -1,4 +1,4 @@
-from constants import WIDTH, HEIGHT
+from App.constants import WIDTH, HEIGHT
 
 # Pop Up to congrats the winner
 POPUP_WIDTH = WIDTH // 1.25

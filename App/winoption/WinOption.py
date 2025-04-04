@@ -1,10 +1,10 @@
 import pygame
-from constants import LIGHT, DARK, WHITE, BLACK
-from winoption.constants import POPUP_HEIGHT, POPUP_WIDTH, POPUP_X, POPUP_Y
-from winoption.constants import CHOICE_HEIGHT, CHOICE_WIDTH
-from winoption.constants import WHITE_X, WHITE_Y
-from winoption.constants import BLACK_X, BLACK_Y 
-from winoption.constants import RANDOM_X, RANDOM_Y
+from App.constants import LIGHT, DARK, WHITE, BLACK
+from App.winoption.constants import POPUP_HEIGHT, POPUP_WIDTH, POPUP_X, POPUP_Y
+from App.winoption.constants import CHOICE_HEIGHT, CHOICE_WIDTH
+from App.winoption.constants import WHITE_X, WHITE_Y
+from App.winoption.constants import BLACK_X, BLACK_Y 
+from App.winoption.constants import RANDOM_X, RANDOM_Y
 
 class WinOption:
     def __init__(self, screen):
