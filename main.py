@@ -1,11 +1,10 @@
 import pygame
 import random
-import sys
-from constants import WIDTH, HEIGHT, WHITE, BLACK
-from game.WinGame import WinGamePVP, WinGamePVE
-from winoption.WinOption import WinOption
-from menu.WinMenu import WinMenu
-from winwin.WinWin import WinWin
+from App.constants import WIDTH, HEIGHT, WHITE, BLACK
+from App.game.WinGame import WinGamePVP, WinGamePVE
+from App.winoption.WinOption import WinOption
+from App.menu.WinMenu import WinMenu
+from App.winwin.WinWin import WinWin
 
 FPS = 60
 
