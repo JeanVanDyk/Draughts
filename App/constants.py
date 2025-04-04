@@ -1,0 +1,10 @@
+# Screen size
+WIDTH, HEIGHT = 750, 750
+
+#RGB
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+DARK = (184, 139, 74)
+LIGHT = (227, 193, 111)
+RED = (255, 0, 0)
+GREY = (128, 128, 128)
