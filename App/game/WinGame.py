@@ -4,7 +4,7 @@ from App.constants import WHITE, BLACK
 from App.checkers.Board import Board
 from App.checkers.Piece import Men
 from App.checkers.Move import Move
-from App.game.Game import Game, Game_PVP, Game_PVE
+from App.game.Game import Game, Game_PVP, Game_PVE, Game_EVE
 from App.utils import get_row_col_from_mouse
 
 class WinGame:
@@ -69,3 +69,18 @@ class WinGamePVE(WinGame):
             super().select(x, y)
         else :
             self._message = self._game.play_bot()
+
+class WinGameEVE(WinGame):
+    def __init__(self, screen):
+        super().__init__(screen)
+        color = random.choice([WHITE, BLACK])
+        self._board = Board(color)
+        self._game = Game_EVE(self._board, color)
+    
+    def reset(self):
+        super().reset()
+        color = random.choice([WHITE, BLACK])
+        self._game = Game_EVE(self._board, color)
+    
+    def select(self, x, y):
+        self._message = self._game.play_bot()

@@ -76,3 +76,23 @@ class Game_PVE(Game):
         
     def get_player(self):
         return self.__player
+
+class Game_EVE(Game):  
+    def __init__(self, board: Board, color):
+        super().__init__(board)
+        self.__color_bot1 = WHITE
+        self.__color_bot2 = BLACK
+        self.__depth = 2
+        self.__bot1 = GreedyBot(self.__color_bot1, self.__color_bot2)
+        self.__bot2 = GreedyBot(self.__color_bot2, self.__color_bot1)
+    
+    def play_bot(self):
+        if self._turn == self.__color_bot1:
+            selection = self.__bot1.get_move(self._board, self.__depth)
+            return super().process(selection)
+
+        selection = self.__bot2.get_move(self._board, self.__depth)
+        return super().process(selection)
+        
+    def get_player(self):
+        return self.__player

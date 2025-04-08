@@ -1,7 +1,7 @@
 import pygame
 import random
 from App.constants import WIDTH, HEIGHT, WHITE, BLACK
-from App.game.WinGame import WinGamePVP, WinGamePVE
+from App.game.WinGame import WinGamePVP, WinGamePVE, WinGameEVE
 from App.winoption.WinOption import WinOption
 from App.menu.WinMenu import WinMenu
 from App.winwin.WinWin import WinWin
@@ -43,6 +43,9 @@ def main():
         
         elif message == "GAME_PVE":
             win = WinOption(screen)
+        
+        elif message == "GAME_EVE":
+            win = WinGameEVE(screen)
         
         elif message == "WHITE":
             win = WinGamePVE(screen, WHITE)

@@ -16,7 +16,7 @@ class Board:
         
         # Initialisation of the board
         self.__board = {(i, j): None for i in range(ROWS) for j in range(COLS)}
-        self.kings_board()
+        self.normal_board(color)
 
         # initialisation of legal moves
         self.calculate_legal_moves(WHITE)
