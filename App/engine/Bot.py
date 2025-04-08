@@ -16,82 +16,93 @@ class GreedyBot(Bot):
         self._player = player
 
     def get_move(self, board: Board, depth: int):
-        tree_board ={board:[]}
-
-        # We do a breadth first tree search
-        i = 0
-        origin_boards = [board]
-        while i <= depth :
-            next_origin_boards = []
-            for origin_board in origin_boards:
-                if i % 2 == 0:
-                    next_boards, next_moves = self.get_next_boards(origin_board, self._player)
-                    next_origin_boards += next_boards
-                else:
-                    next_boards, next_moves = self.get_next_boards(origin_board, self._color)
-                    next_origin_boards += next_boards
-                if i == 0:
-                    available_moves = next_moves
-                tree_board[origin_board] = next_boards
-            origin_boards = next_origin_boards
-            i += 1
-        
-        print("boards", len(tree_board))
-        # Get the score and retrieve the best move
-        score = - 100
-        best_moves = []
-        d1_boards = tree_board[board]
-        d1_size = len(d1_boards)
-        print("d1_size", d1_size)
-        print("available_moves", len(board.get_legal_moves()))
-
-        for i in range(d1_size):
-            d1_board = d1_boards[i]
-            score_temp = self.get_score(d1_board, tree_board, depth-1, self._color)
-
-            if score_temp > score:
-                score = score_temp
-                best_moves = [available_moves[i]]
-            elif score_temp == score:
-                best_moves.append(available_moves[i])
-        
-        best_move = random.choice(best_moves)
-        print("score", score)
-
-        return best_move
-
-    # Get all the boards corresponding to the next turn with its corresponding move leading to it
-    def get_next_boards(self, board: Board, turn):
 
         moves = board.get_legal_moves()
-        next_moves = []
-        next_boards = []
+        best_moves = []
+        score = -100
 
-        # Going through all the legal moves
         for move in moves:
-            next_board = board.copy()
-
-            # Retrieving the related copied move from next_board
-            move_copy = self.get_move_copy(move, next_board)
-
-            # if it is a capture
-            if isinstance(move_copy, Capture):
-                next_board.capture(move_copy)
-                piece = move_copy.get_piece()
-                capture = piece.get_capture()
-
-                next_boards += self.get_next_boards_seq(next_board, capture)
-                next_moves += [move for _ in range(len(next_boards))]
-
-            else:
-                next_board.move(move_copy)
-                next_boards.append(next_board)
-                next_moves.append(move)
+            origin_boards = self.get_next_boards(board, move, self._player)
+            for origin_board in origin_boards:
+                score_temp = self.alpha_beta(origin_board, depth, -100, 100, self._player)
+                if score_temp > score:
+                    score = score_temp
+                    best_moves = [move]
+                elif score_temp == score:
+                    best_moves.append(move)
         
+        print("alpha_beta")
+        print("score", score)
+        print("best_moves", len(best_moves))
+        
+        best_move = random.choice(best_moves)
+        return best_move
+    
+    def alpha_beta(self, board: Board, depth: int, alpha: int, beta: int, maximizing_player):
+        
+        # If we've hit target depth
+        if depth == 0:
+            return self.get_score_board(board)
+        # Or if there are no legal moves
+        elif board.get_legal_moves() == []:
+            if maximizing_player:
+                return -100
+            else:
+                return 100
+        
+        # If it's the bot's turn, we want to maximize the score
+        if maximizing_player == self._color:
+            value = -100
+            moves = board.get_legal_moves().copy()
+            while moves != [] and value < beta:
+                move = moves.pop()
+                childs = self.get_next_boards(board, move, self._player)
+                for child in childs:
+                    value = max(value, self.alpha_beta(child, depth - 1, alpha, beta, self._player))
+                    if value >= beta:
+                        break
+                    alpha = max(alpha, value)
+            return value
+        
+        # If it's not, we want to minimize the score
+        else:
+            value = 100
+            moves = board.get_legal_moves().copy()
+            while moves != [] and value > alpha:
+                move = moves.pop()
+                childs = self.get_next_boards(board, move, self._color)
+                for child in childs:
+                    value = min(value, self.alpha_beta(child, depth - 1, alpha, beta, self._color))
+                    if value <= alpha:
+                        break
+                    beta = min(beta, value)
+            return value
+
+    # Get all the boards corresponding to the next turn with its corresponding move leading to it
+    def get_next_boards(self, board: Board, move: Move, turn):
+
+        next_boards = []
+        next_board = board.copy()
+
+        # Retrieving the related copied move from next_board
+        move_copy = self.get_move_copy(move, next_board)
+
+        # if it is a capture
+        if isinstance(move_copy, Capture):
+            next_board.capture(move_copy)
+            piece = move_copy.get_piece()
+            capture = piece.get_capture()
+
+            next_boards += self.get_next_boards_seq(next_board, capture)
+
+        else:
+            next_board.move(move_copy)
+            next_boards.append(next_board)
+
         for board in next_boards:
             board.calculate_legal_moves(turn)
             
-        return next_boards, next_moves
+        return next_boards
     
     def get_next_boards_seq(self, board: Board, capture: bool):
         seq_cap = [board]

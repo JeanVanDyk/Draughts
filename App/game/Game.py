@@ -82,7 +82,7 @@ class Game_EVE(Game):
         super().__init__(board)
         self.__color_bot1 = WHITE
         self.__color_bot2 = BLACK
-        self.__depth = 2
+        self.__depth = 4
         self.__bot1 = GreedyBot(self.__color_bot1, self.__color_bot2)
         self.__bot2 = GreedyBot(self.__color_bot2, self.__color_bot1)
     
